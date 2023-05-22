@@ -1,64 +1,152 @@
-header{width:100%;height:50px;margin-top:0px;text-align:center;background-color:#003366;position:fixed;z-index:2}
-body{margin:auto;padding:0;color:#000;-webkit-transition:all;-moz-transition:all;-ms-transition:all;-o-transition:all;transition:all;font-family:"Open Sans",
-Segoe,"Segoe UI",
-"Lucida Sans Unicode","Lucida Grande",
-"Avenir","Seravek","Ubuntu",
-"DejaVu Sans","Trebuchet MS",Verdana,Arial,sans-serif;font-size:14.4px;line-height:170%;text-align:justify;font-weight:400}
-table{border-collapse:collapse;vertical-align:middle}
-td{padding:1px 0px 1px 0px}
-a img{border:none}
-/*h1,h2,h3,h4,h5,h6,div.title,div.ftheader,span.venue{font-weight:600}*/
-h4,div.title,div.ftsubheader{font-size:105%}
-ul,ol,dl{margin:0;padding:5px 10px 30px 30px;width:calc(100% - 30px)}
-img.img_responsive{max-width:100%;height:auto;display:block}
-div.container a:link,
-div.container a:visited{color:#0055AA;text-decoration:none}
-div.authors a:link,
-div.authors a:visited{color:#000000}
-div.content a:hover,
-div.content a:hover div.text,
-div.ftsubheader a:hover{text-decoration:underline}
-div.title a:hover{text-decoration:none}
-span.jw{text-decoration:underline}
-div.header,div.container,div.content,div.img,div.text{display:inline-block;zoom:1;display*:inline;text-align:justify;margin-left:auto;margin-right:auto;vertical-align:middle;max-width:960px}
-div.topic,div.outercontainer,div.project_headline,div.project_title{text-align:center}
-div.header,div.container{min-width:330px}
-div.img,div.text{padding-left:10px;padding-right:10px}
-div.project_title{line-height:250%}
-div.outercontainer,div.content{padding-top:0px;padding-bottom:0px}
-div.container,div.content{width:100%}
-div.body{margin-top:50px}
-div.content{margin-bottom:10px}
-div.heading{text-align:left;position:relative;z-index:1}
-div.heading div.img{padding:30px 30px 30px 10px;max-width:30%}
-div.heading div.img img{width:200px}
-div.heading span.tag{padding-right:15px}
-div.heading ul{padding-bottom:0px}
-div.publication{padding-top:0px;padding-bottom:20px}
-div.publication div.img{max-width:300px;padding-right:0px}
-div.publication div.text{max-width:650px;text-align:left}
-span.venue{color:#882222}
-span.venue,span.tag{padding-right:8px}
-span.venue a:link,
-span.venue a:visited{color:#882222}
-div.anchor{border-top:50px solid transparent;margin-top:-50px}
-@media only screen and (max-width: 599px) {
-    div.ftsubheader{padding-left:10px;padding-right:10px}
-    div.heading div.img{padding-right:10px}
-    div.publication div.img{display:none}
-    div.publication div.text{text-align:left}
-    div.content,div.publication{padding-top:0px;padding-bottom:10px}
-    body{font-size:80%}
+body {
+    font-family: "Open Sans", sans-serif;
+    font-size: 12pt;
 }
-@media only screen and (min-width: 600px) {
-    div.heading div.img{padding-right:calc(8% - 30px)}
-    div.heading div.info{padding-right:calc(30% - 200px)}
-    div.publication div.img{max-width:23%}
-    div.publication div.text{max-width:70%;text-align:left}
+
+.content-container {
+    max-width: 800px;
+    margin: 0 auto;
 }
-/* Better styles for embedding GitHub Gists */
-.gist{font-size:13px;line-height:18px;width:53em}
-.gist pre{font-family:Menlo,Monaco,'Bitstream Vera Sans Mono','Courier New',monospace !important}
-.gist-meta{font-family:Arial,sans-serif;font-size:13px !important}
-.gist-meta a{color:#3b5998 !important;font-weight:bold;text-decoration:none}
-.gist-meta a:hover{text-decoration:underline}
+
+h2,
+h3 {
+    font-weight: 800;
+    font-family: "Raleway", sans-serif;
+    font-variant-ligatures: no-common-ligatures;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.title {
+    margin: 2.5rem auto 1rem auto;
+}
+
+.links {
+    font-size: 12pt;
+    margin: 1rem auto;
+}
+
+.title,
+.links,
+.authors,
+.footnote {
+    font-family: "Raleway", sans-serif;
+    text-align: center;
+}
+
+a {
+    color: #0055AA;
+    text-decoration: inherit;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #0055AA;
+}
+
+.footnote {
+    font-size: 11pt;
+    margin-top: 0.2rem;
+}
+
+.teaser {
+    margin: 4rem auto 4rem auto;
+    max-width: 700px;
+    display: grid;
+    grid-template-rows: repeat(3, auto 1fr) auto;
+}
+
+.teaser>.teaser-title {
+    font-size: 11pt;
+    text-align: center;
+}
+
+.teaser>.teaser-row {
+    display: flex;
+    flex-direction: row;
+    border: 3pt solid #424242;
+    border-radius: 3px;
+    margin-bottom: 1rem;
+    margin-top: 0.2rem;
+}
+
+.teaser>.teaser-subtitle {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.teaser>.teaser-subtitle>.teaser-subtitle-text {
+    font-size: 15pt;
+    margin: auto 1rem auto 1rem;
+}
+
+.arrow-right,
+.arrow-left {
+    flex-grow: 1;
+    height: 0;
+    border: 2pt solid black;
+}
+
+.arrow-left {
+    border-radius: 2pt;
+}
+
+.arrow-right {
+    border-radius: 2pt 0 0 2pt;
+}
+
+.arrow-head {
+    width: 0;
+    height: 0;
+    border-top: 10pt solid transparent;
+    border-bottom: 10pt solid transparent;
+
+    border-left: 10pt solid black;
+}
+
+.summary {
+    margin-bottom: 2rem;
+}
+
+.caption {
+    font-size: 10pt;
+    font-style: italic;
+}
+
+.results-section {
+    margin: 2rem auto 3rem auto;
+}
+
+.results-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.results-grid>div{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: fit-content(100%);
+    max-width: 45%;
+    min-width: 350px;
+    gap: 0.1rem;
+    align-items: center;
+    justify-items: center;
+    margin: auto 0;
+}
+
+.results-grid>div>span {
+    grid-column: 1 / -1;
+    justify-self: center;
+    margin-bottom: 0.2rem;
+}

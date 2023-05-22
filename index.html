@@ -1,117 +1,381 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!--test-->
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
 
 <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>Training Diffusion Models with Reinforcement Learning</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway|Open+Sans">
+    <link rel="stylesheet" href="./files/main.css">
 
-<link rel="stylesheet" href="./files/font.css">
-<link rel="stylesheet" href="./files/main.css">
-
-<link rel="stylesheet" type="text/css"
-    href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css">
-<style>
-body {
-  font-family: "Computer Modern Serif", serif;
-  font-size: 15pt;
-}
-
-
-* {padding:0;margin:0;box-sizing:border-box;}
-
-</style>
-
-  <style type="text/css">/**
- * Style sheet used by new LibX tooltip code
- */
-
-/* We insert a <div> with libx-tooltip style under the body.
- * This will inherit body's style - we can't afford to inherit undesirable 
- * styles and we must redefine what we need.  OTOH, some things, e.g.
- * font-size, might be ok to be inherited to stay within the page's tone.
- */
-.libx-tooltip {
-    display: none;
-    overflow: visible;
-    padding: 5px;
-    z-index: 100;
-    background-color: #eee;
-    color: #000;
-    font-weight: normal;
-    font-style: normal;
-    text-align: left;
-    border: 2px solid #666;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-}
-
-.libx-tooltip p {
-    /* override default 1em margin to keep paragraphs inside a tooltip closer together. */
-    margin: .2em;
-}
-</style><style type="text/css">/**
- * Style sheet used by LibX autolinking code
- */
-.libx-autolink {
-}
-
-</style>
-
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css">
 </head>
 
-  <body>
+<body>
+    <div class="content-container">
+        <h2 class="title">Training Diffusion Models with Reinforcement Learning</h2>
 
-    <div class="outercontainer">
-        <div class="container">
-
-            <center>
-            <div class="content project_title">
-            <h2>Denoising Diffusion Policy Optimization</h2>
-            </div>
-
-            <br><br>
-
-            <img src="images/aesthetic-ddpo/hare0.png" width="200">
-            <img src="images/aesthetic-ddpo/hare1.png" width="200">
-            <br>
-
-            <img src="images/aesthetic-ddpo/zebra0.png" width="200">
-            <img src="images/aesthetic-ddpo/zebra1.png" width="200">
-            <br>
-
-            <img src="images/aesthetic-ddpo/lion0.png" width="200">
-            <img src="images/aesthetic-ddpo/lion1.png" width="200">
-            <br>
-
-            <img src="images/aesthetic-ddpo/cow0.png" width="200">
-            <img src="images/aesthetic-ddpo/cow1.png" width="200">
-            <br>
-
-            <img src="images/aesthetic-ddpo/bee0.png" width="200">
-            <img src="images/aesthetic-ddpo/bee1.png" width="200">
-            <br>
-
-            <img src="images/aesthetic-ddpo/frog0.png" width="200">
-            <img src="images/aesthetic-ddpo/frog1.png" width="200">
-            <br>
-
-            <img src="images/aesthetic-ddpo/hedgehog0.png" width="200">
-            <img src="images/aesthetic-ddpo/hedgehog1.png" width="200">
-            <br>
-
-            <img src="images/aesthetic-ddpo/pig0.png" width="200">
-            <img src="images/aesthetic-ddpo/pig1.png" width="200">
-            <br>
-
-            </center>
-
+        <div class="links">
+            <a href="https://google.com" target="_blank">Paper</a> |
+            <a href="https://google.com" target="_blank">Demo</a> |
+            <a href="https://google.com" target="_blank">BibTeX</a>
         </div>
-    </div> 
 
+        <div class="authors">
+            <a href="https://kevinblack.dev" target="_blank">Kevin&nbsp;Black</a>*,
+            <a href="https://jannerm.github.io" target="_blank">Michael&nbsp;Janner</a>*,
+            <a href="https://yilundu.github.io" target="_blank">Yilun&nbsp;Du</a>,
+            <a href="https://www.kostrikov.xyz" target="_blank">Ilya&nbsp;Kostrikov</a>,
+            and <a href="https://people.eecs.berkeley.edu/~svlevine/" target="_blank">Sergey&nbsp;Levine</a>
+        </div>
+
+        <div class="footnote">
+            *equal contribution
+        </div>
+
+        <div class="teaser">
+            <div class="teaser-title">Compressibility: <em>llama</em></div>
+            <div class="teaser-row">
+                <img src="images/teaser/llama/0.png" />
+                <img src="images/teaser/llama/9.png" />
+                <img src="images/teaser/llama/39.png" />
+                <img src="images/teaser/llama/59.png" />
+                <img src="images/teaser/llama/79.png" />
+                <img src="images/teaser/llama/99.png" />
+            </div>
+            <div class="teaser-title">Aesthetic Quality: <em>lion</em></div>
+            <div class="teaser-row">
+                <img src="images/teaser/lion/0.png" />
+                <img src="images/teaser/lion/19.png" />
+                <img src="images/teaser/lion/29.png" />
+                <img src="images/teaser/lion/49.png" />
+                <img src="images/teaser/lion/59.png" />
+                <img src="images/teaser/lion/109.png" />
+            </div>
+            <div class="teaser-title">Prompt-Image Alignment: <em>a raccoon washing dishes</em></div>
+            <div class="teaser-row">
+                <img src="images/teaser/raccoon/0.png" />
+                <img src="images/teaser/raccoon/1.png" />
+                <img src="images/teaser/raccoon/2.png" />
+                <img src="images/teaser/raccoon/3.png" />
+                <img src="images/teaser/raccoon/4.png" />
+                <img src="images/teaser/raccoon/5.png" />
+            </div>
+            <div class="teaser-subtitle">
+                <span class="arrow-left"></span>
+                <span class="teaser-subtitle-text">RL training</span>
+                <span class="arrow-right"></span>
+                <span class="arrow-head"></span>
+            </div>
+        </div>
+
+        <div class="summary">
+            <h3>Summary</h3>
+            <p>
+                We train diffusion models directly on downstream objectives using reinforcement learning (RL).
+                We do this by posing denoising diffusion as a multi-step decision-making problem, enabling a class of
+                policy gradient algorithms that we call <b>denoising diffusion policy optimization</b> (DDPO).
+                We use DDPO to finetune Stable Diffusion on objectives that are difficult to express via prompting, such
+                as image compressibility, and those derived from human feedback, such as aesthetic quality.
+                We also show that DDPO can be used to improve prompt-image alignment without any human annotations using
+                feedback from a vision-language model.
+            </p>
+        </div>
+
+        <div class="vlm-bertscore">
+            <img src="images/vlm-bertscore.png" />
+            <p class="caption">
+                We use feedback from a large vision-language model, <a href="https://llava-vl.github.io"
+                    target="_blank">LLaVA</a>, to automatically improve prompt-image alignment.
+            </p>
+        </div>
+
+        <div class="results results-section">
+            <h3>Results</h3>
+            <p>
+                We first evaluate our method on a few basic reward functions: compressibility, incompressibility, and aesthetic quality as determined by the <a href="https://laion.ai/blog/laion-aesthetics/" target="_blank">LAION aesthetic predictor</a>.
+            </p>
+            <div class="results-grid results-grid-main">
+                <div>
+                    <span>Pretrained</span>
+                    <img src="images/algorithm-comparison/pretrained/bird.png" />
+                    <img src="images/algorithm-comparison/pretrained/fox.png" />
+                    <img src="images/algorithm-comparison/pretrained/bear.png" />
+                    <img src="images/algorithm-comparison/pretrained/gorilla.png" />
+                    <img src="images/algorithm-comparison/pretrained/dog.png" />
+                    <img src="images/algorithm-comparison/pretrained/hen.png" />
+                    <img src="images/algorithm-comparison/pretrained/squirrel.png" />
+                    <img src="images/algorithm-comparison/pretrained/hare.png" />
+                    <img src="images/algorithm-comparison/pretrained/cat.png" />
+                </div>
+
+                <div>
+                    <span>Aesthetic</span>
+                    <img src="images/algorithm-comparison/aesthetic-ppo/bird.png" />
+                    <img src="images/algorithm-comparison/aesthetic-ppo/fox.png" />
+                    <img src="images/algorithm-comparison/aesthetic-ppo/bear.png" />
+                    <img src="images/algorithm-comparison/aesthetic-ppo/gorilla.png" />
+                    <img src="images/algorithm-comparison/aesthetic-ppo/dog.png" />
+                    <img src="images/algorithm-comparison/aesthetic-ppo/hen.png" />
+                    <img src="images/algorithm-comparison/aesthetic-ppo/squirrel.png" />
+                    <img src="images/algorithm-comparison/aesthetic-ppo/hare.png" />
+                    <img src="images/algorithm-comparison/aesthetic-ppo/cat.png" />
+                </div>
+
+                <div>
+                    <span>Compressibility</span>
+                    <img src="images/algorithm-comparison/jpeg-ppo/bird.png" />
+                    <img src="images/algorithm-comparison/jpeg-ppo/fox.png" />
+                    <img src="images/algorithm-comparison/jpeg-ppo/bear.png" />
+                    <img src="images/algorithm-comparison/jpeg-ppo/gorilla.png" />
+                    <img src="images/algorithm-comparison/jpeg-ppo/dog.png" />
+                    <img src="images/algorithm-comparison/jpeg-ppo/hen.png" />
+                    <img src="images/algorithm-comparison/jpeg-ppo/squirrel.png" />
+                    <img src="images/algorithm-comparison/jpeg-ppo/hare.png" />
+                    <img src="images/algorithm-comparison/jpeg-ppo/cat.png" />
+                </div>
+
+                <div>
+                    <span>Incompressibility</span>
+                    <img src="images/algorithm-comparison/neg-jpeg-ppo/bird.png" />
+                    <img src="images/algorithm-comparison/neg-jpeg-ppo/fox.png" />
+                    <img src="images/algorithm-comparison/neg-jpeg-ppo/bear.png" />
+                    <img src="images/algorithm-comparison/neg-jpeg-ppo/gorilla.png" />
+                    <img src="images/algorithm-comparison/neg-jpeg-ppo/dog.png" />
+                    <img src="images/algorithm-comparison/neg-jpeg-ppo/hen.png" />
+                    <img src="images/algorithm-comparison/neg-jpeg-ppo/squirrel.png" />
+                    <img src="images/algorithm-comparison/neg-jpeg-ppo/hare.png" />
+                    <img src="images/algorithm-comparison/neg-jpeg-ppo/cat.png" />
+                </div>
+            </div>
+        </div>
+
+        <div class="vlm-results results-section">
+            <h3>Prompt-Image Alignment</h3>
+            <p>
+                We also optimize a more ambitious reward function: prompt-image alignment as determined by the <a href="https://llava-vl.github.io" target="_blank">LLaVA</a> vision-language model.
+                We use animals doing human-like activites, since the base Stable Diffusion model tends to struggle with these kinds of prompts.
+                Each series of 3 images first shows a sample from the initial pretrained model, then 2 samples from progressive stages of DDPO finetuning.
+            </p>
+            <div class="results-grid results-grid-vlm">
+                <div>
+                    <span class="caption">a dolphin riding a bike</span>
+                    <img src="images/vlm/dolphin_bike/0.png" />
+                    <img src="images/vlm/dolphin_bike/1.png" />
+                    <img src="images/vlm/dolphin_bike/5.png" />
+                </div>
+                <div>
+                    <span class="caption">a hedgehog riding a bike</span>
+                    <img src="images/vlm/hedgehog_bike/0.png" />
+                    <img src="images/vlm/hedgehog_bike/1.png" />
+                    <img src="images/vlm/hedgehog_bike/2.png" />
+                </div>
+                <div>
+                    <span class="caption">a dog riding a bike</span>
+                    <img src="images/vlm/dog_bike/0.png" />
+                    <img src="images/vlm/dog_bike/2.png" />
+                    <img src="images/vlm/dog_bike/5.png" />
+                </div>
+                <div>
+                    <span class="caption">a lizard riding a bike</span>
+                    <img src="images/vlm/lizard_bike/0.png" />
+                    <img src="images/vlm/lizard_bike/1.png" />
+                    <img src="images/vlm/lizard_bike/2.png" />
+                </div>
+                <div>
+                    <span class="caption">a bear washing dishes</span>
+                    <img src="images/vlm/bear_dishes/0.png" />
+                    <img src="images/vlm/bear_dishes/3.png" />
+                    <img src="images/vlm/bear_dishes/5.png" />
+                </div>
+                <div>
+                    <span class="caption">a shark washing dishes</span>
+                    <img src="images/vlm/shark_dishes/0.png" />
+                    <img src="images/vlm/shark_dishes/1.png" />
+                    <img src="images/vlm/shark_dishes/2.png" />
+                </div>
+                <div>
+                    <span class="caption">a frog washing dishes</span>
+                    <img src="images/vlm/frog_dishes/0.png" />
+                    <img src="images/vlm/frog_dishes/1.png" />
+                    <img src="images/vlm/frog_dishes/2.png" />
+                </div>
+                <div>
+                    <span class="caption">a wolf washing dishes</span>
+                    <img src="images/vlm/wolf_dishes/0.png" />
+                    <img src="images/vlm/wolf_dishes/1.png" />
+                    <img src="images/vlm/wolf_dishes/2.png" />
+                </div>
+                <div>
+                    <span class="caption">a chicken playing chess</span>
+                    <img src="images/vlm/chicken_chess/0.png" />
+                    <img src="images/vlm/chicken_chess/1.png" />
+                    <img src="images/vlm/chicken_chess/2.png" />
+                </div>
+                <div>
+                    <span class="caption">an ant playing chess</span>
+                    <img src="images/vlm/ant_chess/0.png" />
+                    <img src="images/vlm/ant_chess/1.png" />
+                    <img src="images/vlm/ant_chess/5.png" />
+                </div>
+            </div>
+        </div>
+
+        <div class="generalization-results results-section">
+            <h3>Generalization: Aesthetic Quality</h3>
+            <p>
+                Unexpected generalization has been found to arise when finetuning large language models with RL: for example, models finetuned on instruction-following only in English often become better in other languages.
+                We find that the same phenomenon occurs with text-to-image diffusion models.
+                Our aesthetic quality model was finetuned using prompts from a list of 45 common animals.
+                We find that it generalizes to unseen animals, as well as everyday objects (to a slightly lesser extent).
+            </p>
+            <div class="results-grid results-grid-generalization">
+                <div>
+                    <span>New Animals: Pretrained</span>
+                    <img src="images/generalization/aesthetic/hippopotamus/0.png" />
+                    <img src="images/generalization/aesthetic/alligator/0.png" />
+                    <img src="images/generalization/aesthetic/cockroach/0.png" />
+                    <img src="images/generalization/aesthetic/elephant/0.png" />
+                    <img src="images/generalization/aesthetic/giraffe/0.png" />
+                    <img src="images/generalization/aesthetic/peacock/0.png" />
+                    <img src="images/generalization/aesthetic/shoebill stork/0.png" />
+                    <img src="images/generalization/aesthetic/squid/0.png" />
+                    <img src="images/generalization/aesthetic/walrus/0.png" />
+                </div>
+
+                <div>
+                    <span>New Animals: Aesthetic</span>
+                    <img src="images/generalization/aesthetic/hippopotamus/1.png" />
+                    <img src="images/generalization/aesthetic/alligator/1.png" />
+                    <img src="images/generalization/aesthetic/cockroach/1.png" />
+                    <img src="images/generalization/aesthetic/elephant/1.png" />
+                    <img src="images/generalization/aesthetic/giraffe/1.png" />
+                    <img src="images/generalization/aesthetic/peacock/1.png" />
+                    <img src="images/generalization/aesthetic/shoebill stork/1.png" />
+                    <img src="images/generalization/aesthetic/squid/1.png" />
+                    <img src="images/generalization/aesthetic/walrus/1.png" />
+                </div>
+
+                <div>
+                    <span>Non-Animals: Pretrained</span>
+                    <img src="images/generalization/aesthetic-objects/plant pot/0.png" />
+                    <img src="images/generalization/aesthetic-objects/bicycle/0.png" />
+                    <img src="images/generalization/aesthetic-objects/bookshelf/0.png" />
+                    <img src="images/generalization/aesthetic-objects/backpack/0.png" />
+                    <img src="images/generalization/aesthetic-objects/sunglasses/0.png" />
+                    <img src="images/generalization/aesthetic-objects/wallet/0.png" />
+                    <img src="images/generalization/aesthetic-objects/shoe/0.png" />
+                    <img src="images/generalization/aesthetic-objects/microwave/0.png" />
+                    <img src="images/generalization/aesthetic-objects/water bottle/0.png" />
+                </div>
+
+                <div>
+                    <span>Non-Animals: Aesthetic</span>
+                    <img src="images/generalization/aesthetic-objects/plant pot/2.png" />
+                    <img src="images/generalization/aesthetic-objects/bicycle/1.png" />
+                    <img src="images/generalization/aesthetic-objects/bookshelf/2.png" />
+                    <img src="images/generalization/aesthetic-objects/backpack/2.png" />
+                    <img src="images/generalization/aesthetic-objects/sunglasses/2.png" />
+                    <img src="images/generalization/aesthetic-objects/wallet/3.png" />
+                    <img src="images/generalization/aesthetic-objects/shoe/3.png" />
+                    <img src="images/generalization/aesthetic-objects/microwave/3.png" />
+                    <img src="images/generalization/aesthetic-objects/water bottle/3.png" />
+                </div>
+
+            </div>
+        </div>
+
+        <div class="results-section">
+            <h3>Generalization: Prompt-Image Alignment</h3>
+            <p>
+                Our prompt-image alignment model was finetuned using the same list of 45 common animals, and <b>only 3 activities</b>:
+                <em>riding a bike</em>, <em>washing dishes</em>, and <em>playing chess</em>.
+                However, we find that it generalizes not only to unseen animals, but also to unseen activities, and even to novel combinations of the two.
+                It also generalizes to inanimate objects, though to a much more limited extent.
+                Each series of 3 images again shows a progression from the pretrained model to progressive stages of DDPO finetuning.
+            </p>
+            <div class="results-grid">
+                <div>
+                    <span class="caption">a capybara washing dishes</span>
+                    <img src="images/vlm/capybara_dishes/0.png"/>
+                    <img src="images/vlm/capybara_dishes/1.png"/>
+                    <img src="images/vlm/capybara_dishes/2.png"/>
+                </div>
+                <div>
+                    <span class="caption">snail playing chess</span>
+                    <img src="images/vlm/snail_chess/0.png"/>
+                    <img src="images/vlm/snail_chess/1.png"/>
+                    <img src="images/vlm/snail_chess/5.png"/>
+                </div>
+                <div>
+                    <span class="caption">a dog doing laundry</span>
+                    <img src="images/vlm/dog_laundry/0.png"/>
+                    <img src="images/vlm/dog_laundry/1.png"/>
+                    <img src="images/vlm/dog_laundry/2.png"/>
+                </div>
+                <div>
+                    <span class="caption">a giraffe playing basketball</span>
+                    <img src="images/vlm/giraffe_basketball/0.png"/>
+                    <img src="images/vlm/giraffe_basketball/1.png"/>
+                    <img src="images/vlm/giraffe_basketball/2.png"/>
+                </div>
+                <div>
+                    <span class="caption">a parrot driving a car</span>
+                    <img src="images/vlm/parrot_car/0.png"/>
+                    <img src="images/vlm/parrot_car/1.png"/>
+                    <img src="images/vlm/parrot_car/2.png"/>
+                </div>
+                <div>
+                    <span class="caption">a duck taking an exam</span>
+                    <img src="images/vlm/duck_exam/0.png"/>
+                    <img src="images/vlm/duck_exam/1.png"/>
+                    <img src="images/vlm/duck_exam/2.png"/>
+                </div>
+                <div>
+                    <span class="caption">a robot fishing in a lake</span>
+                    <img src="images/vlm/robot_fishing/0.png"/>
+                    <img src="images/vlm/robot_fishing/1.png"/>
+                    <img src="images/vlm/robot_fishing/2.png"/>
+                </div>
+                <div>
+                    <span class="caption">a horse typing on a keyboard</span>
+                    <img src="images/vlm/horse_keyboard/0.png"/>
+                    <img src="images/vlm/horse_keyboard/1.png"/>
+                    <img src="images/vlm/horse_keyboard/2.png"/>
+                </div>
+                <div>
+                    <span class="caption">a rabbit sewing clothes</span>
+                    <img src="images/vlm/rabbit_sewing/0.png"/>
+                    <img src="images/vlm/rabbit_sewing/1.png"/>
+                    <img src="images/vlm/rabbit_sewing/2.png"/>
+                </div>
+                <div>
+                    <span class="caption">a tree riding a bike</span>
+                    <img src="images/vlm/tree_bike/0.png"/>
+                    <img src="images/vlm/tree_bike/1.png"/>
+                    <img src="images/vlm/tree_bike/2.png"/>
+                </div>
+                <div>
+                    <span class="caption">a car eating a sandwich</span>
+                    <img src="images/vlm/car_sandwich/0.png"/>
+                    <img src="images/vlm/car_sandwich/1.png"/>
+                    <img src="images/vlm/car_sandwich/2.png"/>
+                </div>
+                <div>
+                    <span class="caption">an apple playing soccer</span>
+                    <img src="images/vlm/apple_soccer/0.png"/>
+                    <img src="images/vlm/apple_soccer/1.png"/>
+                    <img src="images/vlm/apple_soccer/2.png"/>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
