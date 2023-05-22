@@ -84,9 +84,9 @@ a:visited {
     align-items: center;
 }
 
-.teaser>.teaser-subtitle>.teaser-subtitle-text {
+.arrow-text {
     font-size: 15pt;
-    margin: auto 1rem auto 1rem;
+    margin: auto 1rem;
 }
 
 .arrow-right,
@@ -98,6 +98,7 @@ a:visited {
 
 .arrow-left {
     border-radius: 2pt;
+    margin-left: 5%;
 }
 
 .arrow-right {
@@ -109,8 +110,8 @@ a:visited {
     height: 0;
     border-top: 10pt solid transparent;
     border-bottom: 10pt solid transparent;
-
     border-left: 10pt solid black;
+    margin-right: 5%;
 }
 
 .summary {
@@ -143,6 +144,39 @@ a:visited {
     align-items: center;
     justify-items: center;
     margin: auto 0;
+}
+
+.results-grid>div>div {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-self: center;
+    width: 100%;
+    align-items: center;
+}
+
+.arrow-text.results {
+    font-size: 7pt;
+    margin: auto 0.4rem;
+}
+
+.arrow-right.results,
+.arrow-left.results {
+    border: 1pt solid black;
+    height: 0;
+}
+
+.arrow-left.results {
+    border-radius: 1pt;
+}
+
+.arrow-right.results {
+    border-radius: 1pt 0 0 1pt;
+}
+
+.arrow-head.results {
+    border-top: 5pt solid transparent;
+    border-bottom: 5pt solid transparent;
+    border-left: 5pt solid black;
 }
 
 .results-grid>div>span {
