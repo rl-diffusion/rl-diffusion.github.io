@@ -509,6 +509,63 @@
                 </div>
             </div>
         </div>
+
+        <div class="results-section">
+            <h3>Overoptimization</h3>
+            <p>
+                Finetuning on a reward function, especially a learned one, has been observed to lead to reward overoptimization in which the model achieves high reward while moving too far from the pretraining distribution to be useful.
+                Our setting is no exception: on all the objectives, the model eventually destroys any meaningful image content to mazimize reward.
+                We also observed that LLaVA is susceptible to typographic attacks:
+                when optimizing for alignment with respect to prompts of the form "<em>n</em> animals", DDPO was able to successfully fool LLaVA by instead generating text loosely resembling the correct number.
+            </p>
+            <div class="results-grid">
+                <div>
+                    <span>Compressibility</span>
+                    <img src="images_256/overoptimization/jpeg-ppo-llama/0.png"/>
+                    <img src="images_256/overoptimization/jpeg-ppo-llama/79.png"/>
+                    <img src="images_256/overoptimization/jpeg-ppo-llama/109.png"/>
+                    <div>
+                        <span class="arrow-left results"></span>
+                        <span class="arrow-text results">RL training</span>
+                        <span class="arrow-right results"></span>
+                        <span class="arrow-head results"></span>
+                    </div>
+                </div>
+                <div>
+                    <span>Incompressibility</span>
+                    <img src="images_256/overoptimization/neg-jpeg-ppo-hartebeest/0.png"/>
+                    <img src="images_256/overoptimization/neg-jpeg-ppo-hartebeest/59.png"/>
+                    <img src="images_256/overoptimization/neg-jpeg-ppo-hartebeest/109.png"/>
+                    <div>
+                        <span class="arrow-left results"></span>
+                        <span class="arrow-text results">RL training</span>
+                        <span class="arrow-right results"></span>
+                        <span class="arrow-head results"></span>
+                    </div>
+                </div>
+                <div>
+                    <span>Aesthetic Quality</span>
+                    <img src="images_256/overoptimization/aesthetic-ppo-lion/0.png"/>
+                    <img src="images_256/overoptimization/aesthetic-ppo-lion/109.png"/>
+                    <img src="images_256/overoptimization/aesthetic-ppo-lion/179.png"/>
+                    <div>
+                        <span class="arrow-left results"></span>
+                        <span class="arrow-text results">RL training</span>
+                        <span class="arrow-right results"></span>
+                        <span class="arrow-head results"></span>
+                    </div>
+                </div>
+                <div>
+                    <span>Counting</span>
+                    <img src="images_256/overoptimization/vlm-counting/six-lions.png"/>
+                    <img src="images_256/overoptimization/vlm-counting/three-tigers.png"/>
+                    <img src="images_256/overoptimization/vlm-counting/five-raccoons.png"/>
+                    <div>
+                        <span class="arrow-head results" style="border-color: white;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
