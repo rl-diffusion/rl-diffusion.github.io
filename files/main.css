@@ -59,8 +59,8 @@ a:visited {
 .teaser {
     margin: 4rem auto 4rem auto;
     max-width: 700px;
-    display: grid;
-    grid-template-rows: repeat(3, auto 1fr) auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .teaser>.teaser-title {
@@ -69,8 +69,8 @@ a:visited {
 }
 
 .teaser>.teaser-row {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
     border: 3pt solid #424242;
     border-radius: 3px;
     margin-bottom: 1rem;
