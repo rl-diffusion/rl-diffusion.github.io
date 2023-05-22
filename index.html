@@ -103,7 +103,7 @@
             </p>
             <div class="results-grid results-grid-main">
                 <div>
-                    <span>Pretrained</span>
+                    <span>Base Model</span>
                     <img src="images_256/algorithm-comparison/pretrained/bird.png" />
                     <img src="images_256/algorithm-comparison/pretrained/fox.png" />
                     <img src="images_256/algorithm-comparison/pretrained/bear.png" />
@@ -161,7 +161,7 @@
             <p>
                 We also optimize a more ambitious reward function: prompt-image alignment as determined by the <a href="https://llava-vl.github.io" target="_blank">LLaVA</a> vision-language model.
                 We use animals doing human-like activites, since the base Stable Diffusion model tends to struggle with these kinds of prompts.
-                Each series of 3 images first shows a sample from the initial pretrained model, then 2 samples from progressive stages of DDPO finetuning.
+                Each series of 3 images shows samples for the same prompt and random seed throughout training, with the first sample coming from the base model.
                 Interestingly, the model shifts towards a more cartoon-like style, which was not intentionally optimized for.
                 We hypothesize that this is because animals doing human-like activities are more likely to appear in a cartoon-like style in the pretraining distribution, so the model shifts towards this style to more easily align with the prompt.
             </p>
@@ -299,7 +299,7 @@
             </p>
             <div class="results-grid results-grid-generalization">
                 <div>
-                    <span>New Animals: Pretrained</span>
+                    <span>New Animals: Base Model</span>
                     <img src="images_256/generalization/aesthetic/hippopotamus/0.png" />
                     <img src="images_256/generalization/aesthetic/alligator/0.png" />
                     <img src="images_256/generalization/aesthetic/cockroach/0.png" />
@@ -325,7 +325,7 @@
                 </div>
 
                 <div>
-                    <span>Non-Animals: Pretrained</span>
+                    <span>Non-Animals: Base Model</span>
                     <img src="images_256/generalization/aesthetic-objects/plant pot/0.png" />
                     <img src="images_256/generalization/aesthetic-objects/bicycle/0.png" />
                     <img src="images_256/generalization/aesthetic-objects/bookshelf/0.png" />
@@ -356,11 +356,11 @@
         <div class="results-section">
             <h3>Generalization: Prompt-Image Alignment</h3>
             <p>
-                Our prompt-image alignment model was finetuned using the same list of 45 common animals, and <b>only 3 activities</b>:
+                Our prompt-image alignment model was finetuned using the same list of 45 common animals and <b>only 3 activities</b>:
                 <em>riding a bike</em>, <em>washing dishes</em>, and <em>playing chess</em>.
-                However, we find that it generalizes not only to unseen animals, but also to unseen activities, and even to novel combinations of the two.
+                However, we find that it generalizes not only to unseen animals, but also to unseen activities and even novel combinations of the two.
                 It also generalizes to inanimate objects, though to a much more limited extent.
-                Each series of 3 images again shows a progression from the pretrained model to increasing amounts of DDPO finetuning.
+                Each series of 3 images again shows samples for the same prompt and random seed throughout training, with the first sample coming from the base model.
             </p>
             <div class="results-grid">
                 <div>
