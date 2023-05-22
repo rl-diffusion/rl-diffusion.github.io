@@ -92,8 +92,10 @@ a:visited {
 .arrow-right,
 .arrow-left {
     flex-grow: 1;
-    height: 0;
-    border: 2pt solid black;
+    height: 3.5pt;
+    display: block;
+    padding: 0;
+    background-color: black;
 }
 
 .arrow-left {
@@ -161,8 +163,7 @@ a:visited {
 
 .arrow-right.results,
 .arrow-left.results {
-    border: 1pt solid black;
-    height: 0;
+    height: 2.0pt;
 }
 
 .arrow-left.results {
