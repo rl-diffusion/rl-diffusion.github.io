@@ -162,6 +162,8 @@
                 We also optimize a more ambitious reward function: prompt-image alignment as determined by the <a href="https://llava-vl.github.io" target="_blank">LLaVA</a> vision-language model.
                 We use animals doing human-like activites, since the base Stable Diffusion model tends to struggle with these kinds of prompts.
                 Each series of 3 images first shows a sample from the initial pretrained model, then 2 samples from progressive stages of DDPO finetuning.
+                Interestingly, the model shifts towards a more cartoon-like style, which was not intentionally optimized for.
+                We hypothesize that this is because animals doing human-like activities are more likely to appear in a cartoon-like style in the pretraining distribution, so the model shifts towards this style to more easily align with the prompt.
             </p>
             <div class="results-grid results-grid-vlm">
                 <div>
