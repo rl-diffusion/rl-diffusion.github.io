@@ -32,18 +32,18 @@
         <h2 class="title">Training Diffusion Models with Reinforcement Learning</h2>
 
         <div class="links">
-            <a href="./files/paper.pdf" target="_blank">Full Paper</a> |
-            <a href="https://arxiv.org/abs/2305.13301" target="_blank">arXiv</a> |
-            <a href="./files/bib.txt" target="_blank">BibTeX</a> |
-            <a href="/">Code (coming soon!)</a>
+            <a href="./files/paper.pdf">Paper</a> |
+            <a href="https://arxiv.org/abs/2305.13301">arXiv</a> |
+            <a href="https://github.com/jannerm/ddpo">Code & Weights</a> |
+            <a href="./files/bib.txt">BibTeX</a>
         </div>
 
         <div class="authors">
-            <a href="https://kevinblack.dev" target="_blank">Kevin&nbsp;Black</a>*,
-            <a href="https://jannerm.github.io" target="_blank">Michael&nbsp;Janner</a>*,
-            <a href="https://yilundu.github.io" target="_blank">Yilun&nbsp;Du</a>,
-            <a href="https://www.kostrikov.xyz" target="_blank">Ilya&nbsp;Kostrikov</a>,
-            and <a href="https://people.eecs.berkeley.edu/~svlevine/" target="_blank">Sergey&nbsp;Levine</a>
+            <a href="https://kevinblack.dev">Kevin&nbsp;Black</a>*,
+            <a href="https://jannerm.github.io">Michael&nbsp;Janner</a>*,
+            <a href="https://yilundu.github.io">Yilun&nbsp;Du</a>,
+            <a href="https://www.kostrikov.xyz">Ilya&nbsp;Kostrikov</a>,
+            and <a href="https://people.eecs.berkeley.edu/~svlevine/">Sergey&nbsp;Levine</a>
         </div>
 
         <div class="footnote">
@@ -103,7 +103,7 @@
             <img src="images_256/vlm-bertscore.png" />
             <p class="caption">
                 We use feedback from a large vision-language model, <a href="https://llava-vl.github.io"
-                    target="_blank">LLaVA</a>, to automatically improve prompt-image alignment.
+                   >LLaVA</a>, to automatically improve prompt-image alignment.
             </p>
         </div>
 
@@ -112,7 +112,7 @@
             <p>
                 We first evaluate our method on a few basic reward functions: compressibility, incompressibility, and
                 aesthetic quality as determined by the <a href="https://laion.ai/blog/laion-aesthetics/"
-                    target="_blank">LAION aesthetic predictor</a>.
+                   >LAION aesthetic predictor</a>.
             </p>
             <div class="results-grid results-grid-main">
                 <div>
@@ -173,7 +173,7 @@
             <h3>Prompt-Image Alignment</h3>
             <p>
                 We also optimize a more ambitious reward function: prompt-image alignment as determined by the <a
-                    href="https://llava-vl.github.io" target="_blank">LLaVA</a> vision-language model.
+                    href="https://llava-vl.github.io">LLaVA</a> vision-language model.
                 We use animals doing human-like activites, since the base Stable Diffusion model tends to struggle with
                 these kinds of prompts.
                 Each series of 3 images shows samples for the same prompt and random seed throughout training, with the
