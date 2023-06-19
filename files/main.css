@@ -189,3 +189,13 @@ a:visited {
     justify-self: center;
     margin-bottom: 0.2rem;
 }
+
+.results-grid.counting {
+    margin: 0 auto;
+    gap: 0.1rem;
+}
+
+.results-grid.counting>img {
+    min-width: 100px;
+    max-width: 120px;
+}

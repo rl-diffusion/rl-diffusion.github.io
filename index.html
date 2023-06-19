@@ -99,8 +99,8 @@
         <div class="vlm-bertscore">
             <img src="images_256/vlm-bertscore.jpg" />
             <p class="caption">
-                We use feedback from a large vision-language model, <a href="https://llava-vl.github.io"
-                   >LLaVA</a>, to automatically improve prompt-image alignment.
+                We use feedback from a large vision-language model, <a href="https://llava-vl.github.io">LLaVA</a>, to
+                automatically improve prompt-image alignment.
             </p>
         </div>
 
@@ -108,8 +108,8 @@
             <h3>Results</h3>
             <p>
                 We first evaluate our method on a few basic reward functions: compressibility, incompressibility, and
-                aesthetic quality as determined by the <a href="https://laion.ai/blog/laion-aesthetics/"
-                   >LAION aesthetic predictor</a>.
+                aesthetic quality as determined by the <a href="https://laion.ai/blog/laion-aesthetics/">LAION aesthetic
+                    predictor</a>.
             </p>
             <div class="results-grid results-grid-main">
                 <div>
@@ -175,10 +175,9 @@
                 these kinds of prompts.
                 Each series of 3 images shows samples for the same prompt and random seed throughout training, with the
                 first sample coming from the base model.
-                Interestingly, the model shifts towards a more cartoon-like style, which was not intentionally optimized
-                for.
+                Interestingly, the model shifts towards a more cartoon-like style, which was not intentional.
                 We hypothesize that this is because animals doing human-like activities are more likely to appear in a
-                cartoon-like style in the pretraining distribution, so the model shifts towards this style to more
+                cartoon-like style in the pretraining data, so the model shifts towards this style to more
                 easily align with the prompt.
             </p>
             <div class="results-grid results-grid-vlm">
@@ -536,13 +535,10 @@
             <h3>Overoptimization</h3>
             <p>
                 Finetuning on a reward function, especially a learned one, has been observed to lead to reward
-                overoptimization in which the model achieves high reward while moving too far from the pretraining
-                distribution to be useful.
+                overoptimization in which the model exploits the reward function to achieve a high reward in a
+                non-useful way.
                 Our setting is no exception: on all the objectives, the model eventually destroys any meaningful image
                 content to maximize reward.
-                We also observed that LLaVA is susceptible to typographic attacks:
-                when optimizing for alignment with respect to prompts of the form "<em>n</em> animals", DDPO was able to
-                successfully fool LLaVA by instead generating text loosely resembling the correct number.
             </p>
             <div class="results-grid">
                 <div>
@@ -581,15 +577,39 @@
                         <span class="arrow-head results"></span>
                     </div>
                 </div>
-                <div>
-                    <span>Counting</span>
-                    <img src="images_256/overoptimization/vlm-counting/six-lions.jpg" />
-                    <img src="images_256/overoptimization/vlm-counting/three-tigers.jpg" />
-                    <img src="images_256/overoptimization/vlm-counting/five-raccoons.jpg" />
-                    <div>
-                        <span class="arrow-head results" style="border-color: white;"></span>
-                    </div>
-                </div>
+            </div>
+            <br />
+            <p>
+                We also observed that LLaVA is susceptible to typographic attacks:
+                when optimizing for alignment with respect to prompts of the form "<em>n</em> animals", DDPO was able to
+                successfully fool LLaVA by instead generating text loosely resembling the correct number.
+            </p>
+            <div class="results-grid counting">
+                <img src="images_256/overoptimization/vlm-counting/six-monkeys-2.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/six-tigers.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/five-turtles.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/seven-pigs.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/six-turtles.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/eight-lions.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/four-chickens.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/three-foxes.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/seven-lions.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/eight-foxes.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/five-frogs.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/seven-wolves.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/six-birds.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/seven-horses.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/five-wolves.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/six-dogs.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/six-frogs.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/eoght-cats.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/six-turtles-2.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/five-raccoons.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/six-lions.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/seven-birds.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/six-monkeys.jpg" />
+                <img src="images_256/overoptimization/vlm-counting/six-cows.jpg" />
+                <!-- <img src="images_256/overoptimization/vlm-counting/three-tigers.jpg" /> -->
             </div>
         </div>
     </div>
