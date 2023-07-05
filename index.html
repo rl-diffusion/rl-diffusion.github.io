@@ -8,6 +8,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <meta name="twitter:title" content="Training Diffusion Models with Reinforcement Learning">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://rl-diffusion.github.io/images_256/teaser/teaser.jpg">
+
     <title>Training Diffusion Models with Reinforcement Learning</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway|Open+Sans">
@@ -48,40 +52,21 @@
         </div>
 
         <div class="teaser">
-            <div class="teaser-title">Compressibility: <em>llama</em></div>
-            <div class="teaser-row">
-                <img src="images_256/teaser/llama/0.jpg" />
-                <img src="images_256/teaser/llama/9.jpg" />
-                <img src="images_256/teaser/llama/39.jpg" />
-                <img src="images_256/teaser/llama/59.jpg" />
-                <img src="images_256/teaser/llama/79.jpg" />
-                <img src="images_256/teaser/llama/99.jpg" />
-            </div>
-            <div class="teaser-title">Aesthetic Quality: <em>lion</em></div>
-            <div class="teaser-row">
-                <img src="images_256/teaser/lion/0.jpg" />
-                <img src="images_256/teaser/lion/19.jpg" />
-                <img src="images_256/teaser/lion/29.jpg" />
-                <img src="images_256/teaser/lion/49.jpg" />
-                <img src="images_256/teaser/lion/59.jpg" />
-                <img src="images_256/teaser/lion/109.jpg" />
-            </div>
-            <div class="teaser-title">Prompt-Image Alignment: <em>a raccoon washing dishes</em></div>
-            <div class="teaser-row">
-                <img src="images_256/teaser/raccoon/0.jpg" />
-                <img src="images_256/teaser/raccoon/1.jpg" />
-                <img src="images_256/teaser/raccoon/2.jpg" />
-                <img src="images_256/teaser/raccoon/3.jpg" />
-                <img src="images_256/teaser/raccoon/4.jpg" />
-                <img src="images_256/teaser/raccoon/5.jpg" />
-            </div>
-            <div class="teaser-subtitle">
-                <span class="arrow-left"></span>
-                <span class="arrow-text">RL training</span>
-                <span class="arrow-right"></span>
-                <span class="arrow-head"></span>
+            <video autoplay muted playsinline disableRemotePlayback poster="images_256/teaser/teaser.jpg"
+                onended="reveal()">
+                <source src="images_256/teaser/teaser.mp4" type="video/mp4">
+            </video>
+            <div class="replay">
+                <img src="images_256/replay.png" />
+                <div>replay</div>
             </div>
         </div>
+
+        <div class="update">
+            <p><b>UPDATE:</b> We now have a PyTorch implementation that supports LoRA for low-memory training <a
+                    href="https://github.com/kvablack/ddpo-pytorch">here</a>!</p>
+        </div>
+
 
         <div class="summary">
             <h3>Summary</h3>
@@ -613,6 +598,21 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const replay = document.querySelector('.replay');
+
+        function reveal() {
+            replay.style.display = 'flex';
+        }
+
+        replay.addEventListener('click', () => {
+            const video = document.querySelector('video');
+            video.currentTime = 0;
+            video.play();
+            replay.style.display = 'none';
+        });
+    </script>
 </body>
 
 </html>

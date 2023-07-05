@@ -61,10 +61,31 @@ a:visited {
 }
 
 .teaser {
-    margin: 4rem auto 4rem auto;
+    margin: 0.5rem auto 1rem auto;
     max-width: 700px;
     display: flex;
     flex-direction: column;
+    position: relative;
+}
+
+.replay {
+    position: absolute;
+    right: 1rem;
+    top: 0;
+    align-items: center;
+    cursor: pointer;
+    display: none;
+}
+
+.replay>img {
+    height: 1em;
+}
+
+.replay>div {
+    line-height: 1em;
+    margin-bottom: 2px;
+    margin-left: 0.2em;
+    color: #2296f3;
 }
 
 .teaser>.teaser-title {
@@ -118,6 +139,12 @@ a:visited {
     border-bottom: 10pt solid transparent;
     border-left: 10pt solid black;
     margin-right: 5%;
+}
+
+.update {
+    background-color: #f7f093;
+    border-radius: 5pt;
+    padding: 0.1em 1em;
 }
 
 .summary {
